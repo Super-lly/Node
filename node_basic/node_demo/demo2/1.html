@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+  // 求两个数组的交集
+  const a = [1, 2, 3, 4]
+  const b = [12, 3, 4, 1]
+   function abc(arr1, arr2) {
+      let c = []
+
+      for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < b.length; j++) {
+          if (a[i] == b[j]) {
+            c.push(a[i])
+          }
+        }
+      }
+      console.log(c);
+    }
+    abc(a, b)
+
+
+  // 选出数组中的重复元素
+  var r,
+  arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+  r = arr.filter(function (element, index, self) {
+    return self.indexOf(element) === index;
+  })
+
+  // 查看数组是否存在相同元素
+  var arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+  var newArr = arr.sort()
+  console.log(newArr);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == arr[i + 1]) {
+      console.log(arr[i]);
+    }
+  }
+
+</script>
+
+</html>
