@@ -67,3 +67,16 @@ db.query(del, 5, (err, results) => {
   }
 })
 */ 
+
+// 标记删除
+const markdel = 'update users set ? where id = ?'
+const muser = {id : 6, status : 1}
+
+/*
+db.query(markdel,[muser,muser.id],(err,results)=>{
+  if (err) return console.log(err.message);
+  if (results.affectedRows === 1) {
+    console.log('ok');
+  }
+})
+*/ 
