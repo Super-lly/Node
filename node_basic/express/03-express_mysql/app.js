@@ -4,10 +4,10 @@ const mysql = require('mysql')
 
 // 连接数据库
 const db = mysql.createPool({
-  host:'127.0.0.1',     //数据库ip地址
-  user:'root',          //用户名
-  password:'843182',    //密码
-  database:'user_db'    //要连接的数据库
+  host: '127.0.0.1',     //数据库ip地址
+  user: 'root',          //用户名
+  password: '843182',    //密码
+  database: 'user_db'    //要连接的数据库
 })
 
 // 查询
@@ -24,11 +24,10 @@ db.query(search,(err,results)=>{
 */
 
 // 插入数据
-const user = {username:'newUser', password:'963852'}
+const user = { username: 'newUser', password: '963852' }
 const insert = 'insert into users (username,password) values (?,?)'        //?表示占位符
 // 插入数据优化写法
 const insert1 = 'insert into users set ?'
-
 // db.query(insert,[user.username,user.password],(err,results)=>{
 // 优化后语句
 db.query(insert1,user,(err,results)=>{
@@ -40,3 +39,31 @@ db.query(insert1,user,(err,results)=>{
 })
 
 
+
+// 更新数据
+// const updateStr = 'update users set username=?,password=? where id = ?'
+const updateStr = 'update users set ? where id = ?'
+const updateUser = { id: 6, username: 'user2', password: '753159' }
+
+/*
+// db.query(updateStr,[updateUser.username,updateUser.password,updateUser.id],(err,results)=>{
+  // 优化
+db.query(updateStr,[updateUser,updateUser.id],(err,results)=>{
+  if(err) return console.log(err.message);
+  if(results.affectedRows === 1){
+    console.log('ok');
+  }
+})
+*/
+
+// 删除数据
+const del = 'delete from users where id = ?'
+
+/* 
+db.query(del, 5, (err, results) => {
+  if (err) return console.log(err.message);
+  if (results.affectedRows === 1) {
+    console.log('ok');
+  }
+})
+*/ 
