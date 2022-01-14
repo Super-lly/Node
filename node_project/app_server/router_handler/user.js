@@ -23,13 +23,15 @@ register = (req, res) => {
         return res.send({ status: 1, message: '用户已存在' })
       } else {
         // 对用户密码进行加密存储
-        userinfo.password = bcrypt.hashSync(userinfo.password,10)
+        userinfo.password = bcrypt.hashSync(userinfo.password, 10)
         // 若用户不存在 添加用户
         db.query(insert, userinfo, (err, results) => {
           if (err) {
             return res.send({ status: 1, message: err.message })
+          } else if (results.affectedRows != 1) {
+            return res.send({ status: 1, message: '注册失败，请稍后重试' })
           } else {
-            res.send('register ok')
+            res.send({status:0,message:'register ok'})
           }
         })
       }
