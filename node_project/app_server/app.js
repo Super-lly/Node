@@ -7,6 +7,7 @@ const db = require('./db/index')
 
 const app = express()
 
+// 解析req.body获取数据
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
