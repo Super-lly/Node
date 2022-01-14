@@ -24,7 +24,7 @@ register = (req, res) => {
       } else {
         // 对用户密码进行加密存储
         userinfo.password = bcrypt.hashSync(userinfo.password, 10)
-        // 若用户不存在 添加用户
+        // 若用户不存在且影响数据行数为1 添加用户
         db.query(insert, userinfo, (err, results) => {
           if (err) {
             return res.send({ status: 1, message: err.message })
