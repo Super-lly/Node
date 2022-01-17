@@ -1,10 +1,15 @@
 const express = require('express')
 // cors
 const cors = require('cors')
-const router = require('./router/user')
+const userRouter = require('./router/user')
+const userInfoRouter = require('./router/userinfo')
 const joi = require('joi')
 // mysql
 const db = require('./db/index')
+// 导入token key
+const config = require('./config')
+// 导入token解析模块
+const expressJwt = require('express-jwt')
 
 const app = express()
 
@@ -26,10 +31,12 @@ app.all('*', function (req, res, next) {
 app.use(cors())
 // 解析表单数据中间件，仅仅支持 application/x-www-form-urlencoded 格式
 app.use(express.urlencoded({ extended: false }))
+// token认证
+app.use(expressJwt({secret:config.jwtKey}).unless({ path: [/^\/api\//] }))
 
 // 注册数据响应中间件
-app.use((req,res,next)=>{
-  res.cc = (err,ststus = 1)=>{
+app.use((req, res, next) => {
+  res.cc = (err, ststus = 1) => {
     res.send({
       ststus,
       message: err instanceof Error ? err.message : err
@@ -39,17 +46,19 @@ app.use((req,res,next)=>{
 })
 
 // 注册全局路由
-app.use('/api',router)
+app.use('/api', userRouter)
+app.use('/my', userInfoRouter)
 
 
 // 错误级别中间件
-app.use((err,req,res,next)=>{
-  if(err instanceof joi.ValidationError) return res.cc(err)
+app.use((err, req, res, next) => {
+  if (err instanceof joi.ValidationError) return res.cc(err)
+  if (err.name === 'UnauthorizedError') return res.cc('身份认证失败！')
   res.cc(err)
 })
 
 
 // 服务器端口
-app.listen(8080,()=>{
+app.listen(8080, () => {
   console.log('api server running at http://127.0.0.1:8080');
 })

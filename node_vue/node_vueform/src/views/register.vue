@@ -30,7 +30,7 @@ export default {
       // this.$router.push("/home");
       this.userdata.username = this.username
       this.userdata.password = this.password
-      // let userdata = JSON.stringify(this.userdata)
+      
       let userdata = this.userdata
       console.log(userdata);
       request({

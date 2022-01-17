@@ -1,8 +1,8 @@
 <template>
   <div class="login">
     <div class="user_card">
-      <input type="text" name="username" />
-      <input type="password" name="password" />
+      <input type="text" name="username" v-model="username" />
+      <input type="password" name="password" v-model="password" />
       <button @click="login" class="login_btn">login</button>
       <p class="text">
         没有账号？<span class="toregister" @click="register">去注册</span>
@@ -12,21 +12,43 @@
 </template>
 
 <script>
+import { request } from "../net/request";
+
 export default {
   name: "Login",
+  data() {
+    return {
+      userdata: {},
+      username: "",
+      password: "",
+    };
+  },
   methods: {
     login() {
-      this.$router.push("/home");
+      this.userdata.username = this.username;
+      this.userdata.password = this.password;
+      let userdata = this.userdata;
+      console.log(userdata);
+      request({
+        url: "/login",
+        method: "post",
+        data: userdata,
+      }).then((res) => {
+        console.log(res);
+        if (res.status === 0) {
+          this.$router.push("/home");
+        }
+      });
     },
-    register(){
-      this.$router.push('/register')
-    }
+    register() {
+      this.$router.push("/register");
+    },
   },
 };
 </script>
 
 <style scoped>
-.user_card{
+.user_card {
   padding-top: 15px;
   width: 200px;
   height: 120px;
@@ -41,7 +63,7 @@ export default {
   align-items: center;
   justify-content: space-around;
 }
-.user_card input{
+.user_card input {
   width: 162px;
   height: 16px;
   outline: none;
@@ -49,7 +71,7 @@ export default {
   border-bottom: 1px solid #ccc;
   border-radius: 15px;
 }
-.login_btn{
+.login_btn {
   border-radius: 15px;
   border: 1px solid #ccc;
 }
