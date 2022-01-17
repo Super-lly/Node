@@ -29,6 +29,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api',router)
 
 
+// 错误级别中间件
+app.use((err,req,res,next)=>{
+  if(err) return console.log(err);
+  next()
+})
+
+
 // 服务器端口
 app.listen(8080,()=>{
   console.log('api server running at http://127.0.0.1:8080');
