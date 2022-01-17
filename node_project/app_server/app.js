@@ -2,6 +2,7 @@ const express = require('express')
 // cors
 const cors = require('cors')
 const router = require('./router/user')
+const joi = require('joi')
 // mysql
 const db = require('./db/index')
 
@@ -42,8 +43,8 @@ app.use('/api',router)
 
 // 错误级别中间件
 app.use((err,req,res,next)=>{
-  if(err) return console.log(err);
-  next()
+  if(err instanceof joi.ValidationError) return res.cc(err)
+  res.cc(err)
 })
 
 

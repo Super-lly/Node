@@ -9,10 +9,10 @@ register = (req, res) => {
   // 获取表单数据
   let userinfo = req.body
   // 判断表单数据是否为空
-  if (!userinfo.username || !userinfo.password) {
+  // if (!userinfo.username || !userinfo.password) {
     // return res.send({ status: 1, message: '用户名或密码不合法！' })
-    return res.cc('用户名或密码不合法！')
-  } else {
+    // return res.cc('用户名或密码不合法！')
+  // } else {
     const sql = 'select * from ev_users where username = ?'
     const insert = 'insert into ev_users set ?'
     // 查询用户是否存在
@@ -43,7 +43,7 @@ register = (req, res) => {
       }
     })
   }
-}
+// }
 // 登录
 login = (req, res) => {
   res.send('login ok')
