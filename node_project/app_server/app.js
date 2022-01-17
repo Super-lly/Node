@@ -25,9 +25,20 @@ app.all('*', function (req, res, next) {
 app.use(cors())
 // 解析表单数据中间件，仅仅支持 application/x-www-form-urlencoded 格式
 app.use(express.urlencoded({ extended: false }))
+
+// 注册数据响应中间件
+app.use((req,res,next)=>{
+  res.cc = (err,ststus = 1)=>{
+    res.send({
+      ststus,
+      message: err instanceof Error ? err.message : err
+    })
+  }
+  next()
+})
+
 // 注册全局路由
 app.use('/api',router)
-
 
 // 错误级别中间件
 app.use((err,req,res,next)=>{
