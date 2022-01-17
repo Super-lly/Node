@@ -41,6 +41,7 @@ app.use((req,res,next)=>{
 // 注册全局路由
 app.use('/api',router)
 
+
 // 错误级别中间件
 app.use((err,req,res,next)=>{
   if(err instanceof joi.ValidationError) return res.cc(err)
