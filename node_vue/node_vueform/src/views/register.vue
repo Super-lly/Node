@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {request} from "../net/request";
+import {userRequest} from "../net/user";
 
 export default {
   name: "Register",
@@ -30,10 +30,9 @@ export default {
       // this.$router.push("/home");
       this.userdata.username = this.username
       this.userdata.password = this.password
-      
       let userdata = this.userdata
       console.log(userdata);
-      request({
+      userRequest({
         url:'/register',
         method:'post',
         data:userdata

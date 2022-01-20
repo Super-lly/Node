@@ -4,8 +4,6 @@ const cors = require('cors')
 const userRouter = require('./router/user')
 const userInfoRouter = require('./router/userinfo')
 const joi = require('joi')
-// mysql
-const db = require('./db/index')
 // 导入token key
 const config = require('./config')
 // 导入token解析模块
@@ -32,13 +30,13 @@ app.use(cors())
 // 解析表单数据中间件，仅仅支持 application/x-www-form-urlencoded 格式
 app.use(express.urlencoded({ extended: false }))
 // token认证
-app.use(expressJwt({secret:config.jwtKey}).unless({ path: [/^\/api\//] }))
+app.use(expressJwt({ secret: config.jwtKey }).unless({ path: [/^\/api\//] }))
 
 // 注册数据响应中间件
 app.use((req, res, next) => {
-  res.cc = (err, ststus = 1) => {
+  res.cc = (err, status = 1) => {
     res.send({
-      ststus,
+      status,
       message: err instanceof Error ? err.message : err
     })
   }
@@ -49,11 +47,13 @@ app.use((req, res, next) => {
 app.use('/api', userRouter)
 app.use('/my', userInfoRouter)
 
-
 // 错误级别中间件
 app.use((err, req, res, next) => {
   if (err instanceof joi.ValidationError) return res.cc(err)
-  if (err.name === 'UnauthorizedError') return res.cc('身份认证失败！')
+  if (err.name === 'UnauthorizedError') return res.send({
+    status:1,
+    message:'身份认证失败！'
+  })
   res.cc(err)
 })
 

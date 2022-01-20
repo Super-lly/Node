@@ -27,6 +27,7 @@ login = (req, res) => {
       })
       res.send({
         status:0,
+        id: result[0].id,
         message:'登陆成功',
         token:'Bearer' + tokenStr
       })
