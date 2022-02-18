@@ -29,14 +29,25 @@
           <br />
           <button @click="postInfo" :disabled="isAction">修改</button>
         </div>
+        <div class="uppassword">
+          原密码：
+          <input type="password" name="oldpwd" v-model="oldpwd" />
+          <br />
+          新密码：
+          <input type="password" name="newpwd" v-model="newpwd" />
+          <br />
+          <button @click="updatePwd">更新密码</button>
+        </div>
+        <input type="file" id="file" ref="file" /> 
+        <button @click="test">点击</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { infoRequest, infoPostRequest } from "../net/userinfo";
-import imgUrl from "@/assets/images/1122.png";
+import { infoRequest, infoPostRequest, updatePwdRequest, updatePicRequest } from "../net/userinfo";
+import imgUrl from "@/assets/images/user.png";
 
 export default {
   name: "userInfo",
@@ -52,15 +63,14 @@ export default {
       email: "",
       nickname_c: "",
       email_c: "",
+      oldpwd:'',
+      newpwd:'',
       isAction: true,
     };
   },
   created() {
     this.tarr1 = this.tokenStr.split("").slice(0, 6).join("");
-    this.tarr2 = this.tokenStr
-      .split("")
-      .slice(6, this.tokenStr.length)
-      .join("");
+    this.tarr2 = this.tokenStr.split("").slice(6, this.tokenStr.length).join("");
     infoRequest({
       url: "/userinfo",
       method: "get",
@@ -78,12 +88,30 @@ export default {
       this.email_c = this.email;
     });
   },
+  /* 
   beforeUpdate(){
     if(this.nickname != this.nickname_c || this.email != this.email_c){
       this.isAction = false
     } else{
       this.isAction = true
     }
+  },
+  */
+  watch: {
+    nickname: function () {
+      if (this.nickname != this.nickname_c) {
+        this.isAction = false;
+      } else {
+        this.isAction = true;
+      }
+    },
+    email: function () {
+      if (this.email != this.email_c) {
+        this.isAction = false;
+      } else {
+        this.isAction = true;
+      }
+    },
   },
   methods: {
     postInfo() {
@@ -101,6 +129,43 @@ export default {
         console.log(res);
       });
     },
+    updatePwd(){
+      updatePwdRequest({
+        url:'/updatepwd',
+        method:'post',
+        data:{
+          oldpwd: this.oldpwd,
+          newpwd:this.newpwd
+        },
+        headers:{
+          Authorization: this.tarr1 + " " + this.tarr2,
+        }
+      }).then(res=>{
+        if(res.status === 0){
+          this.oldpwd =  ''
+          this.newpwd = ''
+        }
+      })
+    },
+    test(){
+      let file = this.$refs.file.files[0]
+      const render = new FileReader()
+      render.readAsDataURL(file)
+      render.onload = () =>{
+        updatePicRequest({
+          url:'/updatepic',
+          method:'post',
+          data:{
+            user_pic:render.result
+          },
+          headers:{
+            Authorization: this.tarr1 + " " + this.tarr2,
+          }
+        }).then(res=>{
+          console.log(res);
+        })
+      }
+    } 
   },
 };
 </script>

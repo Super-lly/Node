@@ -34,6 +34,7 @@ app.use(expressJwt({ secret: config.jwtKey }).unless({ path: [/^\/api\//] }))
 
 // 注册数据响应中间件
 app.use((req, res, next) => {
+  // console.log(1);
   res.cc = (err, status = 1) => {
     res.send({
       status,

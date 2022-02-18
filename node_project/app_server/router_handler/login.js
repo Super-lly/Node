@@ -13,21 +13,21 @@ login = (req, res) => {
 
   const sql = 'select * from ev_users where username = ?'
 
-  db.query(sql, userinfo.username, (err, result) => {
+  db.query(sql, userinfo.username, (err, results) => {
     if (err) return res.cc(err)
-    if (result.length !== 1) return res.cc('登陆失败')
+    if (results.length !== 1) return res.cc('登陆失败')
 
-    const compareResult = bcrypt.compareSync(userinfo.password, result[0].password)
+    const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
     if (!compareResult) {
       return res.cc('登陆失败')
     } else {
-      const user = { ...result[0], password: '', user_pic: '' }
+      const user = { ...results[0], password: '', user_pic: '' }
       const tokenStr = jwt.sign(user, config.jwtKey,{
         expiresIn : '3h'
       })
       res.send({
         status:0,
-        id: result[0].id,
+        id: results[0].id,
         message:'登陆成功',
         token:'Bearer' + tokenStr
       })

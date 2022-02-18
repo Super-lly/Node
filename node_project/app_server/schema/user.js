@@ -13,10 +13,26 @@ const joi = require('joi')
 
 const username = joi.string().alphanum().min(1).max(10).required()
 const password = joi.string().pattern(/^[\S]{6,12}$/).required()
+// 头像验证
+// dataUri()格式 -> data:image/png;base64,VE9PTUFOWVNFQ1JFVFM=
+const avatar = joi.string().dataUri().required()
 
 exports.reg_login_schema = {
   body:{
     username,
     password
+  }
+}
+
+exports.update_password_schema = {
+  body:{
+    oldpwd:password,
+    newpwd:joi.not(joi.ref('oldpwd')).concat(password)
+  }
+}
+
+exports.update_userpic_schema = {
+  body:{
+    avatar
   }
 }
