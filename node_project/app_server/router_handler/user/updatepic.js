@@ -1,6 +1,6 @@
 // 用户头像更新处理函数
 
-const db = require('../db/index')
+const db = require('../../db/index')
 
 updatepic = (req, res) => {
   console.log(req.body);

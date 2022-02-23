@@ -37,7 +37,7 @@ server.on('connection',socket=>{
 
   socket.on('close',()=>{
     delete clients[socket.name]
-    console.log('用户'+socket.name+"寄了");
+    console.log('用户'+socket.name+"下线了");
   })
 
   function broadcast(socket,msg){

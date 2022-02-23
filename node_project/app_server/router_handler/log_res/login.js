@@ -1,11 +1,11 @@
 // 用户登录路由处理函数
 // 导入数据库
-const db = require('../db/index')
+const db = require('../../db/index')
 // 导入加密模块
 const bcrypt = require('bcryptjs')
 // 导入生成token模块
 const jwt = require('jsonwebtoken')
-const config = require('../config')
+const config = require('../../config')
 
 // 登录
 login = (req, res) => {

@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const userRouter = require('./router/user')
 const userInfoRouter = require('./router/userinfo')
+const goodsListRouter = require('./router/goods')
 const joi = require('joi')
 // 导入token key
 const config = require('./config')
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 // 注册全局路由
 app.use('/api', userRouter)
 app.use('/my', userInfoRouter)
+app.use('/goods',goodsListRouter)
 
 // 错误级别中间件
 app.use((err, req, res, next) => {

@@ -6,7 +6,7 @@ const router = express.Router()
 const userinfo = require('../router_handler/userinfo')
 const updateInfo = require('../router_handler/updateInfo')
 const updatepwd = require('../router_handler/updatepwd')
-const updatepic = require('../router_handler/updatepic')
+const updatepic = require('../router_handler/user/updatepic')
 
 const expressJoi = require('@escook/express-joi')
 const { update_userInfo_schema } = require('../schema/userinfo')

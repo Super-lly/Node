@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router_register = require('../router_handler/register')
-const router_login = require('../router_handler/login')
+const router_login = require('../router_handler/log_res/login')
 const expressJoi = require('@escook/express-joi')
 const { reg_login_schema } = require('../schema/user')
 // 创建路由对象
