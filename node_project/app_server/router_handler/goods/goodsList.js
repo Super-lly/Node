@@ -1,6 +1,6 @@
 // 商品信息查询处理函数
 
-const db = require('../db/index')
+const db = require('../../db/index')
 
 goodsInfo = (req,res) => {
   // 临时sql语句 按需要改写

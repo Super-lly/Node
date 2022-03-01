@@ -24,7 +24,7 @@ let host = '127.0.0.1'
 client.setEncoding = 'UTF-8'
 
 client.connect(port, host, () => {
-  client.write('你们的爹来了！')
+  client.write('来了！')
 })
 
 client.on('data', (msg) => {

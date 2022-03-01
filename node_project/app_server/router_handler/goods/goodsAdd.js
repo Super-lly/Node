@@ -17,3 +17,5 @@ goodsAdd = (req, res) => {
     })
   })
 }
+
+module.exports = goodsAdd

@@ -1,7 +1,7 @@
 // 用户信息获取函数
 // userinfo 路由处理函数
 
-const db = require('../db/index')
+const db = require('../../db/index')
 
 userinfo = (req,res) =>{
   // console.log(req.query);

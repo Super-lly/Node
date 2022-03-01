@@ -3,9 +3,9 @@ const express = require('express')
 // 创建路由对象
 const router = express.Router()
 // 导入路由处理函数
-const userinfo = require('../router_handler/userinfo')
-const updateInfo = require('../router_handler/updateInfo')
-const updatepwd = require('../router_handler/updatepwd')
+const userinfo = require('../router_handler/user/userinfo')
+const updateInfo = require('../router_handler/user/updateInfo')
+const updatepwd = require('../router_handler/user/updatepwd')
 const updatepic = require('../router_handler/user/updatepic')
 
 const expressJoi = require('@escook/express-joi')

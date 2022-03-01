@@ -40,6 +40,7 @@
         </div>
         <input type="file" id="file" ref="file" /> 
         <button @click="test">点击</button>
+        <button @click="getGoodsInfo">获取商品信息</button>
       </div>
     </div>
   </div>
@@ -47,6 +48,8 @@
 
 <script>
 import { infoRequest, infoPostRequest, updatePwdRequest, updatePicRequest } from "../net/userinfo";
+import { goodsInfo } from '../net/goods'
+
 import imgUrl from "@/assets/images/user.png";
 
 export default {
@@ -165,6 +168,18 @@ export default {
           console.log(res);
         })
       }
+    },
+    // 获取商品信息
+    getGoodsInfo(){
+      goodsInfo({
+        url:'/goodsinfo',
+        method:'get',
+        headers: {
+          Authorization: this.tarr1 + " " + this.tarr2,
+        },
+      }).then(res => {
+        console.log(res);
+      })
     } 
   },
 };

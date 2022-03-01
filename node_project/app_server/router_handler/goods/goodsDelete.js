@@ -4,7 +4,7 @@ const db = require('../../db/index')
 
 goodsDelete = (res,req) => {
 
-  const sql = 'delete from ev_goods where id = ?'
+  const sql = 'delete from ev_goods where goods_id = ?'
   // req.body.id 不一定为商品id，需根据实际修改
   db.query(sql, req.body.id, (err,result)=>{
     if(err) return res.cc(err)
@@ -15,3 +15,5 @@ goodsDelete = (res,req) => {
     })
   })
 }
+
+module.exports = goodsDelete

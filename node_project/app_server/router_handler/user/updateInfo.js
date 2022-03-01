@@ -1,6 +1,6 @@
 // 用户信息更新处理函数
 
-const db = require('../db/index')
+const db = require('../../db/index')
 
 updateInfo = (req, res) => {
 

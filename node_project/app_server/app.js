@@ -57,7 +57,11 @@ app.use((err, req, res, next) => {
     status:1,
     message:'身份认证失败！'
   })
-  res.cc(err)
+  // res.cc(err)
+  res.send({
+    status:1,
+    message:err
+  })
 })
 
 

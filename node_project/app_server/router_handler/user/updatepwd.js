@@ -1,6 +1,6 @@
 // 修改密码处理函数
 
-const db = require('../db/index')
+const db = require('../../db/index')
 // 密码加密及验证
 const bcrypt = require('bcryptjs')
 

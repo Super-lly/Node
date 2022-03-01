@@ -7,9 +7,22 @@ updatepic = (req, res) => {
   const sql = 'update ev_users set user_pic=? where id=?'
 
   db.query(sql, [req.body.user_pic, req.user.id], (err, results) => {
-    if (err) return res.cc(err)
-    if (results.affectedRows != 1) return res.cc('更换头像失败')
-    res.cc('更换成功', 0)
+    if (err) {
+      res.send({
+        status:1,
+        message:err
+      })
+    }
+    if (results.affectedRows != 1) {
+      res.send({
+        status:1,
+        message:'更换头像失败'
+      })
+    }
+    res.send({
+      status:0,
+      message:'更换成功'
+    })
   })
 }
 
