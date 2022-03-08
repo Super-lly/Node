@@ -19,7 +19,7 @@ login = (req, res) => {
 
     const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
     if (!compareResult) {
-      return res.cc('登陆失败')
+      return res.cc('密码错误')
     } else {
       const user = { ...results[0], password: '', user_pic: '' }
       const tokenStr = jwt.sign(user, config.jwtKey,{
