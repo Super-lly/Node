@@ -29,7 +29,7 @@ router.post('/userinfo', expressJoi(update_userInfo_schema), updateInfo)
 router.post('/updatepwd', expressJoi(update_password_schema), updatepwd)
 
 // 修改用户头像
-router.post('/updatepic', expressJoi(update_userpic_schema), updatepic)
+router.post('/updatepic', updatepic)
 
 // 删除指定用户
 router.post('/removeuser',removeuser)

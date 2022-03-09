@@ -3,7 +3,6 @@
 const db = require('../../db/index')
 
 updatepic = (req, res) => {
-  console.log(req.body);
   const sql = 'update ev_users set user_pic=? where id=?'
 
   db.query(sql, [req.body.user_pic, req.user.id], (err, results) => {
@@ -21,7 +20,7 @@ updatepic = (req, res) => {
     }
     res.send({
       status:0,
-      message:'更换成功'
+      message:'更换头像成功'
     })
   })
 }
