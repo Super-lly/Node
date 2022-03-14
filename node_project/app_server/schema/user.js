@@ -13,6 +13,8 @@ const joi = require('joi')
 
 const username = joi.string().alphanum().min(1).max(10).required()
 const password = joi.string().pattern(/^[\S]{6,12}$/).required()
+const nickname = joi.string().min(1).max(10)
+const email = joi.string().pattern(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/).required()
 // 头像验证
 // dataUri()格式 -> data:image/png;base64,VE9PTUFOWVNFQ1JFVFM=
 const avatar = joi.string().dataUri().required()
@@ -20,7 +22,9 @@ const avatar = joi.string().dataUri().required()
 exports.reg_login_schema = {
   body:{
     username,
-    password
+    password,
+    nickname,
+    email
   }
 }
 
