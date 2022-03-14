@@ -18,13 +18,20 @@ const email = joi.string().pattern(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-
 // 头像验证
 // dataUri()格式 -> data:image/png;base64,VE9PTUFOWVNFQ1JFVFM=
 const avatar = joi.string().dataUri().required()
-
-exports.reg_login_schema = {
+// 注册验证
+exports.register_schema = {
   body:{
     username,
     password,
     nickname,
     email
+  }
+}
+// 登录验证
+exports.login_schema = {
+  body:{
+    username,
+    password
   }
 }
 
