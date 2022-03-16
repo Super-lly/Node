@@ -12,6 +12,7 @@ const removeuser = require('../router_handler/user/removeuser')
 const adduser = require('../router_handler/user/adduser')
 const changeroot = require('../router_handler/user/changeRoot')
 const searchuser = require('../router_handler/user/searchuser')
+const getPageInfo = require('../router_handler/user/getPageInfo')
 
 const expressJoi = require('@escook/express-joi')
 const { update_userInfo_schema } = require('../schema/userinfo')
@@ -43,6 +44,9 @@ router.post('/changeroot',changeroot)
 
 // 查询用户
 router.post('/searchuser',searchuser)
+
+// 分页请求用户数据
+router.post('/getPageInfo',getPageInfo)
 
 // 向外共享路由对象
 module.exports = router
