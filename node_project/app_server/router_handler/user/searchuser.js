@@ -3,9 +3,9 @@
 const db = require('../../db/index')
 
 searchuser = (req,res) =>{
-  const sql = 'select id, username, nickname, email, user_pic, userroot from ev_users where id=?'
+  const sql = 'select id, username, nickname, email, user_pic, userroot from ev_users where username=?'
 
-  db.query(sql,req.body.id,(err,results)=>{
+  db.query(sql,req.body.username,(err,results)=>{
     if(err) return res.cc(err)
     if(results.length !== 1) return res.cc('查询失败，请稍后再试')
     res.send({
