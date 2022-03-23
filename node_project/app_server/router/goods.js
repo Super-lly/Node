@@ -6,6 +6,7 @@ const router = express.Router()
 const goodsInfo = require('../router_handler/goods/goodsList')
 const goodsAdd = require('../router_handler/goods/goodsAdd')
 const goodsDelete = require('../router_handler/goods/goodsDelete')
+const searchgoods = require('../router_handler/goods/searchgoods')
 
 // 获取商品信息
 router.get('/goodsinfo',goodsInfo)
@@ -15,5 +16,8 @@ router.post('/goodsadd',goodsAdd)
 
 // 删除商品
 router.post('/goodsdelete',goodsDelete)
+
+// 查询商品
+router.post('/goodssearch',searchgoods)
 
 module.exports = router

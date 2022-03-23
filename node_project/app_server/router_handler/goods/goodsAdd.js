@@ -4,6 +4,7 @@ const db = require('../../db/index')
 
 goodsAdd = (req, res) => {
 
+
   // const goodsinfo = req.body
   // console.log(goodsinfo);
   // 临时sql语句 按需要改写
@@ -21,9 +22,11 @@ goodsAdd = (req, res) => {
       ...req.body,
       goods_code: 'GDCE' + (10000 + id)
     }
+    goodsinfo.goods_pic = JSON.stringify(goodsinfo.goods_pic)
     db.query(sql, goodsinfo, (err, result) => {
       if (err) return res.cc(err)
       if (result.affectedRows != 1) return res.cc('添加商品失败，请稍后再试')
+      if(result.length === 1) return res.cc('最少保留一条数据')
       res.send({
         status: 0,
         message: '添加商品成功'
