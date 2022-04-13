@@ -18,7 +18,7 @@ server.listen('2233',()=>{
 */
 
 let port = '2233'
-let host = '127.0.0.1'
+// let host = '47.112.187.95'
 
 const server = new net.createServer()
 
@@ -51,6 +51,7 @@ server.on('connection',socket=>{
   }
 })
 
-server.listen(port,host,()=>{
+// server.listen(port,host,()=>{
+server.listen(port,()=>{
   console.log('server on',server.address());
 })
