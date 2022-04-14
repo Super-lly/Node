@@ -26,6 +26,7 @@ let clients = []
 let clientsId = 0
 
 server.on('connection',socket=>{
+  socket.emit('message:','ctmd')
   socket.name = ++clientsId
   clients[socket.name] = socket
 
