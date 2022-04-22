@@ -3,7 +3,7 @@ const db = require('../../db/index')
 
 environmentData = (req, res) => {
   // 临时sql语句 按需要改写
-  const sql = 'select * from ev_endata'
+  const sql = 'select * from ev_endata order by time DESC limit 10'
 
   db.query(sql, (err, result) => {
     if (err) return res.cc(err)
@@ -20,7 +20,7 @@ environmentData = (req, res) => {
         var second = now.getSeconds(); //返回日期中的秒数（0到59）
         return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
       }
-      var time = new Date(v.time);   //创建一个指定的日期对象
+      var time = new Date(Number(v.time));   //创建一个指定的日期对象
       v.time = formatDate(time)
     })
     res.send({
