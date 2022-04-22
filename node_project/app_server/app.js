@@ -4,6 +4,7 @@ const cors = require('cors')
 const userRouter = require('./router/user')
 const userInfoRouter = require('./router/userinfo')
 const goodsListRouter = require('./router/goods')
+const socketData = require('./router/socketData')
 const joi = require('joi')
 // 导入token key
 const config = require('./config')
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
 app.use('/api', userRouter)
 app.use('/my', userInfoRouter)
 app.use('/goods',goodsListRouter)
+app.use('/environment',socketData)
 
 // 错误级别中间件
 app.use((err, req, res, next) => {

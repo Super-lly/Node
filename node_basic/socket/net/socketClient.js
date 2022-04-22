@@ -19,12 +19,13 @@ let readline = require('readline')
 const client = new net.Socket()
 
 let port = 2233
-let host = '47.112.187.95'
+// let host = '47.112.187.95'
+let host = '127.0.0.1'
 
 client.setEncoding = 'UTF-8'
 
 client.connect(port, host, () => {
-  client.write('来了！')
+  client.write('123')
 })
 
 client.on('data', (msg) => {
