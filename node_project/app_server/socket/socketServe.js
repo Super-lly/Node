@@ -8,16 +8,15 @@ const server = new net.createServer()
 
 let clients = []
 let clientsId = 0
-let time = Date.now()
 let environmentData = {}
-let sql = 'insert into ev_endata set ?'
+let sql = 'insert ignore into ev_endata set ?'
 
 server.on('connection', socket => {
   socket.name = ++clientsId
   clients[socket.name] = socket
-
   socket.on('data', msg => {
     broadcast(socket, msg.toString())
+    let time = Date.now()
     let msg1 = msg.toString()
     let msgObj = eval("(" + msg1 + ")")
     // console.log(time);
