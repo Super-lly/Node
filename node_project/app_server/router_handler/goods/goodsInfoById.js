@@ -8,6 +8,9 @@ goodsDetail = (req,res) =>{
   db.query(sql,req.body.goods_id,(err, result)=>{
     if (err) return res.cc(err)
     if (result.length === 0) return res.cc('暂无数据')
+    result.forEach(v=>{
+      v.goods_pic = JSON.parse(v.goods_pic)
+    })
     res.send({
       status:0,
       message:'查询成功',
