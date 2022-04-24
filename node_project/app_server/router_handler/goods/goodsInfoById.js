@@ -3,6 +3,7 @@
 const db = require('../../db/index')
 
 goodsDetail = (req,res) =>{
+  console.log(req.body);
   const sql = 'select * from ev_goods where goods_id = ?'
   db.query(sql,req.body.goods_id,(err, result)=>{
     if (err) return res.cc(err)
