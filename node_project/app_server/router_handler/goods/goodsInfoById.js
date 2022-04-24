@@ -4,7 +4,7 @@ const db = require('../../db/index')
 
 goodsDetail = (req,res) =>{
   const sql = 'select * from ev_goods where goods_id = ?'
-  db.query(sql,(err, result)=>{
+  db.query(sql,req.body.goods_id,(err, result)=>{
     if (err) return res.cc(err)
     if (result.length === 0) return res.cc('暂无数据')
     res.send({
