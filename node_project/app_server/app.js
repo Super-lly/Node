@@ -12,13 +12,13 @@ const joi = require('joi')
 const config = require('./config')
 // 导入token解析模块
 const expressJwt = require('express-jwt')
-
+// 实例express
 const app = express()
 
 // 解析req.body获取数据
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
+// 跨域处理
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
