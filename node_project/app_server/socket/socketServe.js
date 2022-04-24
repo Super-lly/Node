@@ -27,7 +27,6 @@ server.on('connection', socket => {
         lux : msgObj.lux + '%' || ''
       }
       db.query(sql, environmentData, (err, result) => {
-        console.log(3);
         if (err) return console.log(err);
         if (result.affectedRows != 1) return console.log('数据错误，请检查数据库或数据源');
         console.log('数据添加成功');
