@@ -1,10 +1,12 @@
 const express = require('express')
-// cors
+// cors跨域
 const cors = require('cors')
+// 全局路由导入
 const userRouter = require('./router/user')
 const userInfoRouter = require('./router/userinfo')
 const goodsListRouter = require('./router/goods')
 const socketData = require('./router/socketData')
+// 验证规则
 const joi = require('joi')
 // 导入token key
 const config = require('./config')
