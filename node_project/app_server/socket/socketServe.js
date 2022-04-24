@@ -9,6 +9,7 @@ const server = new net.createServer()
 let clients = []
 let clientsId = 0
 let environmentData = {}
+let index = 1
 let sql = 'insert ignore into ev_endata set ?'
 
 server.on('connection', socket => {
@@ -27,21 +28,24 @@ server.on('connection', socket => {
         lux : msgObj.lux + '%' || ''
       }
       db.query(sql, environmentData, (err, result) => {
+        index = index + 1 
         if (err) return console.log(err);
         if (result.affectedRows != 1) return console.log('数据错误，请检查数据库或数据源');
-        console.log('数据添加成功');
+        console.log('第'+index+'条数据添加成功');
       })
     }
   })
 
   socket.on('error', err => {
     console.log("error:" + err);
+    index = 1
     socket.end()
   })
 
   socket.on('close', () => {
     delete clients[socket.name]
     console.log('用户' + socket.name + "下线了");
+    index = 1
   })
 
   function broadcast(socket, msg) {
