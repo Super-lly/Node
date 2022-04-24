@@ -9,7 +9,7 @@ const server = new net.createServer()
 let clients = []
 let clientsId = 0
 let environmentData = {}
-let index = 1
+let index = 0
 let sql = 'insert ignore into ev_endata set ?'
 
 server.on('connection', socket => {
@@ -38,14 +38,14 @@ server.on('connection', socket => {
 
   socket.on('error', err => {
     console.log("error:" + err);
-    index = 1
+    index = 0
     socket.end()
   })
 
   socket.on('close', () => {
     delete clients[socket.name]
     console.log('用户' + socket.name + "下线了");
-    index = 1
+    index = 0
   })
 
   function broadcast(socket, msg) {

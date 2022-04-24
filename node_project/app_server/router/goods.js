@@ -8,6 +8,7 @@ const goodsAdd = require('../router_handler/goods/goodsAdd')
 const goodsDelete = require('../router_handler/goods/goodsDelete')
 const searchgoods = require('../router_handler/goods/searchgoods')
 const changeGoodsInfo = require('../router_handler/goods/changeGoodsInfo')
+const goodsDetail = require('../router_handler/goods/goodsInfoById')
 
 // 获取商品信息
 router.get('/goodsinfo',goodsInfo)
@@ -23,5 +24,8 @@ router.post('/goodssearch',searchgoods)
 
 // 编辑商品信息
 router.post('/changeGoodsInfo',changeGoodsInfo)
+
+// 查看商品详细信息
+router.post('/getGoodsDetail',goodsDetail)
 
 module.exports = router
