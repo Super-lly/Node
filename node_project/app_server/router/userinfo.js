@@ -13,7 +13,8 @@ const adduser = require('../router_handler/user/adduser')
 const changeroot = require('../router_handler/user/changeRoot')
 const searchuser = require('../router_handler/user/searchuser')
 const getPageInfo = require('../router_handler/user/getPageInfo')
-const usermessage = require('../router_handler/user/usermessage')
+const userMessage = require('../router_handler/user/usermessage')
+const getMessageInfo = require('../router_handler/user/getMessageInfo')
 
 const expressJoi = require('@escook/express-joi')
 const { update_userInfo_schema } = require('../schema/userinfo')
@@ -49,8 +50,11 @@ router.post('/searchuser',searchuser)
 // 分页请求用户数据
 router.post('/getPageInfo',getPageInfo)
 
-// 用户留言信息
-router.post('/user/add/message',usermessage)
+// 存入用户留言信息
+router.post('/user/add/message',userMessage)
+
+// 获取用户留言信息
+router.get('/user/message/list',getMessageInfo)
 
 // 向外共享路由对象
 module.exports = router

@@ -26,7 +26,7 @@ goodsAdd = (req, res) => {
     db.query(sql, goodsinfo, (err, result) => {
       if (err) return res.cc(err)
       if (result.affectedRows != 1) return res.cc('添加商品失败，请稍后再试')
-      if(result.length === 1) return res.cc('最少保留一条数据')
+      // if(result.length === 1) return res.cc('最少保留一条数据')
       res.send({
         status: 0,
         message: '添加商品成功'

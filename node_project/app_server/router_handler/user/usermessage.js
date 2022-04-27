@@ -15,6 +15,9 @@ getMessage = (req,res) => {
       ...req.body,
       ...result[0]
     }
+    if(req.body.msgpic){
+      usermessage.msgpic = JSON.stringify(usermessage.msgpic)
+    }
     db.query(sql2,usermessage,(err2,result2)=>{
       if(err2) return res.cc(err2)
       if(result2.affectedRows != 1) return res.cc('存入数据失败')
