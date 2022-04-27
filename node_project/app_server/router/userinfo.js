@@ -54,7 +54,7 @@ router.post('/getPageInfo',getPageInfo)
 router.post('/user/add/message',userMessage)
 
 // 获取用户留言信息
-router.get('/user/message/list',getMessageInfo)
+router.post('/user/message/list',getMessageInfo)
 
 // 向外共享路由对象
 module.exports = router
