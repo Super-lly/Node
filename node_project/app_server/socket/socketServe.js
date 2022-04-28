@@ -25,7 +25,7 @@ server.on('connection', socket => {
       environmentData = {
         ...msgObj,
         time,
-        lux : msgObj.lux + '%' || ''
+        lux : msgObj.lux || ''
       }
       db.query(sql, environmentData, (err, result) => {
         index = index + 1 
