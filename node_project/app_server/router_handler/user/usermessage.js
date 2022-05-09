@@ -21,7 +21,7 @@ getMessage = (req, res) => {
       usermessage.msgpic = JSON.stringify(usermessage.msgpic)
     }
 
-    db.query(sql3, [usermessage.user_pic, id], (err3, result3) => {
+    db.query(sql3, [result[0].user_pic, id], (err3, result3) => {
       if (err3) return res.cc(err3)
       // if (result3.affectedRows == 0) return res.cc('修改数据0条')
       db.query(sql2, usermessage, (err2, result2) => {
