@@ -10,7 +10,7 @@ getMessageInfo = (req, res) => {
   const sql2 = 'select standnum from ev_userMessage'
   db.query(sql, (err, result) => {
     if (err) return res.cc(err)
-    if (result.length === 0) return res.cc('暂无数据')
+    if (result.length === 0) return res.send({status:0,message:"暂无数据",pageNum,pageSize})
     result.forEach(v => {
       if (v.msgpic) {
         v.msgpic = JSON.parse(v.msgpic)
