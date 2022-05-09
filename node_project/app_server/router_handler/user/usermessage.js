@@ -14,15 +14,16 @@ getMessage = (req, res) => {
     if (result.length != 1) return res.cc('请检查用户id')
     let usermessage = {
       ...req.body,
-      ...result[0]
+      ...result[0],
+      user_pic : result[0].user_pic || ''
     }
     if (req.body.msgpic) {
       usermessage.msgpic = JSON.stringify(usermessage.msgpic)
     }
 
-    db.query(sql3, [result[0].user_pic, id], (err3, result3) => {
+    db.query(sql3, [usermessage.user_pic, id], (err3, result3) => {
       if (err3) return res.cc(err3)
-      if (result3.affectedRows == 0) return res.cc('修改数据0条')
+      // if (result3.affectedRows == 0) return res.cc('修改数据0条')
       db.query(sql2, usermessage, (err2, result2) => {
         if (err2) return res.cc(err2)
         if (result2.affectedRows != 1) return res.cc('存入数据失败')
