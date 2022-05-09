@@ -4,10 +4,9 @@
 const db = require('../../db/index')
 
 userinfo = (req,res) =>{
-  // console.log(req.query);
   
   const sql = 'select id, username, nickname, email, user_pic, userroot from ev_users where id=?'
-  db.query(sql,req.query.id,(err,results)=>{
+  db.query(sql,req.user.id,(err,results)=>{
     if(err) return res.cc(err)
     if(results.length !== 1) return res.cc(err)
     res.send({
