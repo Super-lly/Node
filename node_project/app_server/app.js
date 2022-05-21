@@ -70,6 +70,6 @@ app.use((err, req, res, next) => {
 
 
 // 服务器端口
-app.listen(8080, () => {
-  console.log('api server running at http://127.0.0.0:8080');
+app.listen(8088, () => {
+  console.log('api server running at http://127.0.0.0:8088');
 })
